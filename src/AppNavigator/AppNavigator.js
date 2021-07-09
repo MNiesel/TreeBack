@@ -3,13 +3,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
 import { Feather } from "@expo/vector-icons";
-import { FiHome, FiCalendar } from "react-icons/fi";
 
 import Feed from "../Feed/Feed";
 import Meetings from "../Meetings/Meetings";
 import Colleagues from "../Colleagues/Colleagues";
 import Trees from "../Trees/Trees";
 import SelectUserFeedback from "../SelectUserFeedback/SelectUserFeedback";
+import FreeTextScreen from "../FreeTextScreen/FreeTextScreen";
 
 
 const Stack = createStackNavigator();
@@ -27,6 +27,7 @@ const ColleaguesStack = () => {
     <Stack.Navigator>
       <Stack.Screen name="Colleagues" component={Colleagues} options={{title: "Colleagues"}}/>
       <Stack.Screen name="SelectUserFeedback" component={SelectUserFeedback} options={{title: "Wähle Feedback"}}/>
+      <Stack.Screen name="FreeTextScreen" component={FreeTextScreen} options={{title: "Gebe einen Freitext ein"}}/>
     </Stack.Navigator>
   )
 }

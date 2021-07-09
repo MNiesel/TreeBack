@@ -1,24 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { View, StyleSheet, Text, Button } from "react-native";
+import badgeHelpers from "../Badge/badgeHelpers";
 
 const ButtonGroup = ({ buttons, onSelect }) => {
-  let images = [
-    require("../../assets/illustrations/creative.png"),
-    require("../../assets/illustrations/rocket.png"),
-    require("../../assets/illustrations/calm.png"),
-    require("../../assets/illustrations/problem.png"),
-    require("../../assets/illustrations/hero.png"),
-    require("../../assets/illustrations/handshake.png"),
-  ];
 
-  const badge = ["creative","rocket","calm", "problem" , "hero" , "meeting"]
+    let images = [];
+    let badgeText = [];
+
+    for(let i = 0; i < buttons.length ; i++){
+        images.push(badgeHelpers.getBadgeImage(buttons[i]));
+        badgeText.push(badgeHelpers.getBadgeText(buttons[i]));
+    }
 
   const [isActive, setIsActive] = useState(-1);
   const onClickHandler = (index) => {
     setIsActive(index);
-    onSelect(badge[index]);
+    onSelect(buttons[index]);
   };
 
   return (
@@ -53,7 +52,7 @@ const ButtonGroup = ({ buttons, onSelect }) => {
                     : {...styles.badgeText , ...styles.inactiveBadgeText}
                 }
               >
-                {button}
+                {badgeText[index]}
               </Text>
             </TouchableOpacity>
           );

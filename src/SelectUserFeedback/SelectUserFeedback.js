@@ -5,21 +5,20 @@ import { Feather } from "@expo/vector-icons";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 
 const SelectUserFeedback = ({ navigation, route }) => {
+  const [selectedBadge, setSelectedBadge] = useState("");
 
-    const [selectedBadge , setSelectedBadge] = useState("");
-
-    const onBadgeSelect= (badge) => {
-        setSelectedBadge(badge);
-    };
+  const onBadgeSelect = (badge) => {
+    setSelectedBadge(badge);
+  };
 
   const { name } = route.params;
   const buttonsForUser = [
-    "Kreativer Kopf!",
-    "Durchstarter!",
-    "Ruhepol!",
-    "Problemlöser",
-    "Held",
-    "Lass uns treffen!",
+    "creative",
+    "rocket",
+    "calm",
+    "problem",
+    "hero",
+    "handshake",
   ];
   return (
     <SafeAreaView style={styles.screenContainer}>
@@ -28,17 +27,23 @@ const SelectUserFeedback = ({ navigation, route }) => {
         <Text style={styles.userNameText}>{name}</Text>
       </View>
       <View>
-        <ButtonGroup
-          buttons={buttonsForUser}
-          onSelect={onBadgeSelect}
-        />
+        <ButtonGroup buttons={buttonsForUser} onSelect={onBadgeSelect} />
       </View>
       <View>
-      <View>
-          <TouchableOpacity title="Freitext eingeben" style={selectedBadge === "" ? {...styles.button , ...styles.inactiveButton} : styles.button }>
-              <Text style={styles.buttonText}>Freitext eingeben</Text>
+        <View>
+          <TouchableOpacity
+            title="Freitext eingeben"
+            style={
+              selectedBadge === ""
+                ? { ...styles.button, ...styles.inactiveButton }
+                : styles.button
+            }
+            disabled={selectedBadge === "" ? true : false}
+            onPress={() => {navigation.navigate("FreeTextScreen", {name: name, badge: selectedBadge})}}
+          >
+            <Text style={styles.buttonText}>Freitext eingeben</Text>
           </TouchableOpacity>
-      </View>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -73,20 +78,20 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 30,
     height: 50,
-    backgroundColor:  "#2F5D62",
+    backgroundColor: "#2F5D62",
     borderRadius: 12,
     color: "white",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
-},
-buttonText: {
+    justifyContent: "center",
+  },
+  buttonText: {
     color: "white",
     fontSize: 20,
-},
-inactiveButton:{
+  },
+  inactiveButton: {
     backgroundColor: "#DBDBDB",
-}
+  },
 });
 
 export default SelectUserFeedback;

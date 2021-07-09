@@ -9,6 +9,7 @@ import {
 
 import AppNavigator from "./src/AppNavigator/AppNavigator.js";
 
+
 export default function App() {
   return <AppNavigator />;
 }
