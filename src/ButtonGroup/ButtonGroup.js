@@ -29,8 +29,8 @@ const ButtonGroup = ({ buttons, onSelect }) => {
             <TouchableOpacity
               style={
                 index === isActive
-                  ? styles.activeButtonContainer
-                  : styles.inactiveButtonContainer
+                  ? styles.buttonContainer
+                  : {...styles.buttonContainer, ...styles.inactiveButtonContainer}
               }
               key={index}
               onPress={() => {
@@ -40,8 +40,8 @@ const ButtonGroup = ({ buttons, onSelect }) => {
               <View
                 style={
                   index === isActive
-                    ? styles.activeImageContainer
-                    : styles.inactiveImageContainer
+                    ? styles.imageContainer
+                    : {...styles.imageContainer, ...styles.inactiveImageContainer}
                 }
               >
                 <Image style={styles.image} source={images[index]} />
@@ -49,8 +49,8 @@ const ButtonGroup = ({ buttons, onSelect }) => {
               <Text
                 style={
                   index === isActive
-                    ? styles.activeBadgeText
-                    : styles.inactiveBadgeText
+                    ? styles.badgeText
+                    : {...styles.badgeText , ...styles.inactiveBadgeText}
                 }
               >
                 {button}
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     marginTop: 20,
   },
-  activeButtonContainer: {
+  buttonContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -86,17 +86,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   inactiveButtonContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: fiftyPercent,
-    height: 130,
-    fontSize: 15,
     backgroundColor: "white",
     borderBottomWidth: 1,
     borderRightWidth: 1,
   },
-  activeImageContainer: {
+  imageContainer: {
     display: "flex",
     justifyContent: "center",
     height: 80,
@@ -107,26 +101,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inactiveImageContainer: {
-    display: "flex",
-    justifyContent: "center",
-    height: 80,
-    width: 80,
     borderColor: "black",
-    borderRadius: 50,
-    borderWidth: 1,
-    alignItems: "center",
   },
   image: {
     height: 70,
     width: 70,
   },
-  inactiveBadgeText: {
-    color: "#323332",
-    marginTop: 5,
-  },
-  activeBadgeText: {
+  badgeText: {
     color: "white",
     marginTop: 5,
+  },
+  inactiveBadgeText: {
+    color: "#323332",
   },
 });
 

@@ -35,8 +35,8 @@ const SelectUserFeedback = ({ navigation, route }) => {
       </View>
       <View>
       <View>
-          <TouchableOpacity title="Freitext eingeben" style={styles.activeButton}>
-              <Text style={styles.activeButtonText}>Freitext eingeben</Text>
+          <TouchableOpacity title="Freitext eingeben" style={selectedBadge === "" ? {...styles.button , ...styles.inactiveButton} : styles.button }>
+              <Text style={styles.buttonText}>Freitext eingeben</Text>
           </TouchableOpacity>
       </View>
       </View>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     height: 130,
     width: fiftyPercent,
   },
-  activeButton: {
+  button: {
     marginTop: 30,
     height: 50,
     backgroundColor:  "#2F5D62",
@@ -80,9 +80,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
 },
-activeButtonText: {
+buttonText: {
     color: "white",
     fontSize: 20,
+},
+inactiveButton:{
+    backgroundColor: "#DBDBDB",
 }
 });
 
