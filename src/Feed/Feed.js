@@ -8,13 +8,14 @@ import FeedbackCard from '../FeedbackCard/FeedbackCard';
 
 const Feed = () => {
     const [feedbacks, setFeedbacks] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
 
     async function fetchFeedbacks() {
+        setIsFetching(true);
         const response = await fetch("https://treeback-80147-default-rtdb.europe-west1.firebasedatabase.app/feedbacks.json")
        const data = await response.json();
 
        const loadedFeedbacks = [];
-       console.log(data);
 
       for(const key in data){
           loadedFeedbacks.push({
@@ -27,6 +28,7 @@ const Feed = () => {
           });
       };
       setFeedbacks(loadedFeedbacks);
+      setIsFetching(false);
     }
 
     useEffect(() =>{
@@ -41,9 +43,13 @@ const Feed = () => {
     return(
         <SafeAreaView style={style.container}>
         <FlatList
-            data={feedbacks}
+            data={feedbacks.sort((a,b)=>{
+                return new Date(b.timestamp) - new Date(a.timestamp)
+            })}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
+            onRefresh={() => {fetchFeedbacks()}}
+            refreshing={isFetching}
         />
         </SafeAreaView>
     )
