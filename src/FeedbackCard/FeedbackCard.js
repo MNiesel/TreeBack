@@ -7,13 +7,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CardFlip from "react-native-card-flip";
-import badgeHelpers from "../Badge/badgeHelpers"
-
+import badgeHelpers from "../Badge/badgeHelpers";
 
 const FeedbackCard = (props) => {
-    
-    const image = badgeHelpers.getBadgeImage(props.badge);
-    const badgeText = badgeHelpers.getBadgeText(props.badge);
+  const image = badgeHelpers.getBadgeImage(props.badge);
+  const badgeText = badgeHelpers.getBadgeText(props.badge);
 
   return (
     <View style={styles.cardContainer}>
@@ -26,11 +24,14 @@ const FeedbackCard = (props) => {
             style={styles.badgeContainer}
             onPress={() => this["card" + props.index].flip()}
           >
-            <ImageBackground
-              source={image}
-              style={styles.backgroundImage}
-            >
-              <Text style={styles.badgeText}>{badgeText}</Text>
+            <ImageBackground source={image} style={styles.backgroundImage}>
+              <View style={styles.badgeTextBackground}>
+                <Text style={styles.badgeText}>{badgeText}</Text>
+              </View>
+              <View style={styles.pointContainer}>
+                <View style={styles.activePoint}></View>
+                <View style={styles.inactivePoint}></View>
+              </View>
             </ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity
@@ -38,12 +39,16 @@ const FeedbackCard = (props) => {
             onPress={() => this["card" + props.index].flip()}
           >
             <Text style={styles.commentText}>{props.text}</Text>
+            <View style={styles.pointContainer}>
+                <View style={styles.inactivePoint}></View>
+                <View style={styles.activePoint}></View>
+              </View>
           </TouchableOpacity>
         </CardFlip>
       </View>
       <View style={styles.userContainer}>
         <Text style={styles.userText}>{props.from}</Text>
-        <Text style={styles.timeText}>~2min</Text>
+        <Text style={styles.timeText}>{props.date}</Text>
       </View>
     </View>
   );
@@ -80,8 +85,6 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: "white",
-    textAlign: "center",
-    top: fiftyPercent,
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -105,6 +108,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: "center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   textContainer: {
     display: "flex",
@@ -121,6 +126,41 @@ const styles = StyleSheet.create({
     fontSize: 15,
     padding: 20,
   },
+  pointContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    position: "absolute",
+    top: 170
+  },
+  activePoint: {
+    height: 15,
+    width: 15,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 50,
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  inactivePoint: {
+    height: 15,
+    width: 15,
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 50,
+    marginLeft: 5,
+    marginRight: 5,
+  },
+  badgeTextBackground: {
+    backgroundColor: "rgba(47, 93, 98, 0.5)",
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
+    borderRadius: 12,
+  }
 });
 
 export default FeedbackCard;

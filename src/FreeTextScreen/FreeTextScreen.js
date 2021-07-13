@@ -1,19 +1,37 @@
 import React, { useState } from "react";
+import { CommonActions } from "@react-navigation/native";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Keyboard,
+  TextInput,
+  Image,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { Image } from "react-native";
 import badgeHelpers from "../Badge/badgeHelpers";
-import { TextInput } from "react-native";
-import { Keyboard } from "react-native";
 import SuccessModal from "../Modal/SuccessModal";
+import uuid from 'react-native-uuid';
 
 const FreeTextScreen = ({ route, navigation }) => {
+
+  const submitHandler = () => {
+    var feedbackUUID = uuid.v4();
+    fetch("https://treeback-80147-default-rtdb.europe-west1.firebasedatabase.app/feedbacks.json",{
+    method:"POST",
+    body: JSON.stringify({
+      badge: badge,
+      from: "Statischer Test User",
+      to: name,
+      text: userInput,
+      id: feedbackUUID,
+      timestamp: Date.now()
+    })
+    })
+  }
+
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const { name } = route.params;
@@ -25,18 +43,26 @@ const FreeTextScreen = ({ route, navigation }) => {
   const [userInput, setUserInput] = useState("");
 
   const onSendHandler = () => {
-      setModalIsVisible(true);
+    submitHandler();
+    setModalIsVisible(true);
   };
   const onClose = () => {
     setModalIsVisible(false);
-    navigation.navigate("Feed");
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [{ name: "Feed" }],
+      })
+    );
   };
+
+ 
 
   return (
     <View style={styles.container}>
       <SuccessModal
         isVisible={modalIsVisible}
-        to="Benedict Cumberbatch"
+        to={name}
         onCloseHandler={onClose}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -68,7 +94,7 @@ const FreeTextScreen = ({ route, navigation }) => {
             disabled={userInput === "" ? true : false}
             onPress={onSendHandler}
           >
-            <Text style={styles.buttonText}>Freitext eingeben</Text>
+            <Text style={styles.buttonText}>Feedback senden</Text>
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
