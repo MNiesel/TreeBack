@@ -25,7 +25,7 @@ const FeedStack = () => {
 const ColleaguesStack = () => {
   return(
     <Stack.Navigator>
-      <Stack.Screen name="Colleagues" component={Colleagues} options={{title: "Colleagues"}}/>
+      <Stack.Screen name="Kollegen" component={Colleagues} options={{title: "Kollegen"}}/>
       <Stack.Screen name="SelectUserFeedback" component={SelectUserFeedback} options={{title: "Wähle Feedback"}}/>
       <Stack.Screen name="FreeTextScreen" component={FreeTextScreen} options={{title: "Gebe einen Freitext ein"}}/>
     </Stack.Navigator>
@@ -35,7 +35,7 @@ const ColleaguesStack = () => {
 const MeetingsStack = () => {
   return(
     <Stack.Navigator>
-      <Stack.Screen name="Meetings" component={Meetings} options={{title: "Meetings"}}/>
+      <Stack.Screen name="Termine" component={Meetings} options={{title: "Termine"}}/>
     </Stack.Navigator>
   )
 }
@@ -63,10 +63,10 @@ export default function AppNavigator() {
             if (route.name === "Feed") {
               iconName = "home";
               iconColor = focused ? "#2F5D62" : "#323332";
-            } else if (route.name === "Colleagues") {
+            } else if (route.name === "Kollegen") {
               iconName = "plus-circle";
               iconColor = focused ? "#2F5D62" : "#323332";
-            } else if (route.name === "Meetings") {
+            } else if (route.name === "Termine") {
               iconName = "calendar";
               iconColor = focused ? "#2F5D62" : "#323332";
             } else if (route.name === "Trees") {
@@ -82,8 +82,8 @@ export default function AppNavigator() {
         }}
       >
         <Tab.Screen name="Feed" component={FeedStack} />
-        <Tab.Screen name="Colleagues" component={ColleaguesStack} />
-        <Tab.Screen name="Meetings" component={MeetingsStack} />
+        <Tab.Screen name="Kollegen" component={ColleaguesStack} />
+        <Tab.Screen name="Termine" component={MeetingsStack} />
         <Tab.Screen name="Trees" component={TreesStack} />
       </Tab.Navigator>
     </NavigationContainer>
