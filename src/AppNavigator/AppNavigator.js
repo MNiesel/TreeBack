@@ -36,6 +36,8 @@ const MeetingsStack = () => {
   return(
     <Stack.Navigator>
       <Stack.Screen name="Termine" component={Meetings} options={{title: "Termine"}}/>
+      <Stack.Screen name="SelectUserFeedback" component={SelectUserFeedback} options={{title: "Wähle Feedback"}}/>
+      <Stack.Screen name="FreeTextScreen" component={FreeTextScreen} options={{title: "Gebe einen Freitext ein"}}/>
     </Stack.Navigator>
   )
 }

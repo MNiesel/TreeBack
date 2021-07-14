@@ -17,6 +17,7 @@ import uuid from 'react-native-uuid';
 
 const FreeTextScreen = ({ route, navigation }) => {
 
+
   const submitHandler = () => {
     var feedbackUUID = uuid.v4();
     fetch("https://treeback-80147-default-rtdb.europe-west1.firebasedatabase.app/feedbacks.json",{
@@ -36,6 +37,8 @@ const FreeTextScreen = ({ route, navigation }) => {
 
   const { name } = route.params;
   const { badge } = route.params;
+  const { meeting } = route.params;
+  const { isMeeting } = route.params;
 
   const image = badgeHelpers.getBadgeImage(badge);
   const badgeText = badgeHelpers.getBadgeText(badge);
@@ -62,15 +65,36 @@ const FreeTextScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <SuccessModal
         isVisible={modalIsVisible}
-        to={name}
+        to={isMeeting? meeting.title : name}
         onCloseHandler={onClose}
+        isMeeting={isMeeting}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <View style={styles.userContainer}>
-            <Feather name="circle" size={50} color="#323332" />
-            <Text style={styles.userNameText}>{name}</Text>
+      <View>
+      {isMeeting ? (
+        <View style={styles.meetingContainer}>
+          <View>
+            <Text style={styles.titleText}>{meeting.title}</Text>
           </View>
+          <View style={styles.meetingAttendants}>
+            <Feather name="user" size={25} color="#323332" />
+            <Text style={styles.attendantsText}>{meeting.teilnehmer.length} Teilnehmer</Text>
+          </View>
+          <View style={styles.timestamp}>
+          <Feather name="calendar" size={25} color="#323332" />
+            <Text style={styles.timestampText}>{new Intl.DateTimeFormat("en-GB", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            }).format(meeting.timestamp)}</Text>
+          </View>
+        </View>
+      ) : (
+        <View style={styles.userContainer}>
+          <Feather name="circle" size={50} color="#323332" />
+          <Text style={styles.userNameText}>{name}</Text>
+        </View>
+      )}
           <View style={styles.imageContainer}>
             <Image style={styles.image} source={image} />
             <Text>{badgeText}</Text>
@@ -96,7 +120,7 @@ const FreeTextScreen = ({ route, navigation }) => {
           >
             <Text style={styles.buttonText}>Feedback senden</Text>
           </TouchableOpacity>
-        </View>
+          </View>
       </TouchableWithoutFeedback>
     </View>
   );
@@ -161,6 +185,36 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  meetingContainer: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    marginTop: 20
+  },
+  meetingAttendants: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 10,
+    width: "100%",
+  },
+  titleText:{
+    fontSize: 17
+  },
+  attendantsText:{
+    marginLeft: 10
+  },
+  timestampText:{
+    marginLeft: 10,
+  },
+  timestamp: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
   },
 });
 

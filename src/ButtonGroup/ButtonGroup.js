@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { View, StyleSheet, Text, Button } from "react-native";
@@ -9,7 +9,8 @@ const ButtonGroup = ({ buttons, onSelect }) => {
     let images = [];
     let badgeText = [];
 
-    for(let i = 0; i < buttons.length ; i++){
+
+    for(let i = 0; i < buttons.length; i++){
         images.push(badgeHelpers.getBadgeImage(buttons[i]));
         badgeText.push(badgeHelpers.getBadgeText(buttons[i]));
     }

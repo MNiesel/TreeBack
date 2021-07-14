@@ -13,6 +13,15 @@ const DUMMY_COLLEAGUES = [
 
 ]
 
+const buttons = [
+    "creative",
+    "rocket",
+    "calm",
+    "problem",
+    "hero",
+    "handshake",
+  ];
+
 const Colleagues = ({navigation}) => {
 
     const [search, setSearch] = useState("");
@@ -25,17 +34,17 @@ const Colleagues = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.screenContainer}>
-        <SearchBar platform="default" placeholder="Suche einen Kollegen" onChangeText={searchChangeHandler}  value={search} platform={Platform.OS} containerStyle={{backgroundColor:"none"}}/>
+        <SearchBar  placeholder="Suche einen Kollegen" onChangeText={searchChangeHandler}  value={search} platform={Platform.OS} containerStyle={{backgroundColor:"none"}}/>
         {search.length > 0 ? filteredList.map(user => {
             return(
-                <TouchableOpacity style={styles.userContainer} key={user.key} onPress={() => navigation.navigate("SelectUserFeedback" , {name: user.name})}>
+                <TouchableOpacity style={styles.userContainer} key={user.key} onPress={() => navigation.navigate("SelectUserFeedback" , {name: user.name, isMeeting: false , buttons: buttons})}>
                 <Feather name="circle" size={50} color={"#323332"}/>
                     <Text>{user.name}</Text>
                 </TouchableOpacity>
             )
         }): DUMMY_COLLEAGUES.map(user => { 
             return(
-                <TouchableOpacity key={user.key} style={styles.userContainer} onPress={() => navigation.navigate("SelectUserFeedback", {name: user.name})}>
+                <TouchableOpacity key={user.key} style={styles.userContainer} onPress={() => navigation.navigate("SelectUserFeedback", {name: user.name, buttons: buttons})}>
                 <Feather name="circle" size={50} color={"#323332"}/>
                     <Text style={styles.userName}>{user.name}</Text>
                 </TouchableOpacity>

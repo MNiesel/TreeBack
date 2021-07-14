@@ -17,7 +17,7 @@ const SuccessModal = (props, navigation) => {
       <View style={styles.modalView}>
         <Image style={styles.image} source={require("../../assets/illustrations/marketing.png")}/>
         <Text style={styles.titleText}>Erfolgreich gesendet!</Text>
-        <Text style={styles.userText}>Du hast erfolgreich dein Feedback an {props.to} gesendet!</Text>
+        <Text style={styles.userText}>Du hast erfolgreich dein Feedback {props.isMeeting ? "zu" : "an"} {props.to} gesendet!</Text>
         <TouchableOpacity
         title="Zurück zum Feed"
         style={styles.button}
