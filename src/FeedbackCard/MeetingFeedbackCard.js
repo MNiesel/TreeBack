@@ -9,10 +9,13 @@ import {
 } from "react-native";
 import CardFlip from "react-native-card-flip";
 import badgeHelpers from "../Badge/badgeHelpers";
+import { Feather } from "@expo/vector-icons";
 
 const FeedbackCard = (props) => {
   const image = badgeHelpers.getBadgeImage(props.badge);
   const badgeText = badgeHelpers.getBadgeText(props.badge);
+
+  const userImage = require("../../assets/testUser.jpg");
 
   return (
     <View style={styles.cardContainer}>
@@ -47,15 +50,18 @@ const FeedbackCard = (props) => {
           </TouchableOpacity>
         </CardFlip>
       </View>
-      <View style={styles.userContainer}>
-        <View style={styles.userImageContainer}>
-          <Image
-            source={require("../../assets/testUser.jpg")}
-            style={styles.userImage}
-          />
-          <Text style={styles.userText}>{props.from}</Text>
+      <View style={styles.bottomContainer}>
+        <View style={styles.meetingContainer}>
+          <Feather name="calendar" size={25} color={"#323332"} />
+          <Text style={styles.userText}>{props.meetingTitle}</Text>
         </View>
-        <Text style={styles.timeText}>{props.date}</Text>
+        <View style={styles.userContainer}>
+          <View style={styles.userFlexContainer}>
+            <Image source={userImage} style={styles.userImage} />
+            <Text style={styles.userText}>{props.from}</Text>
+          </View>
+          <Text style={styles.timeText}>{props.date}</Text>
+        </View>
       </View>
     </View>
   );
@@ -66,8 +72,13 @@ const fiftyPercent = "50%";
 const nintyPercent = "90%";
 
 const styles = StyleSheet.create({
+  userImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 50,
+  },
   cardContainer: {
-    height: 265,
+    height: 305,
     width: containerWidth,
     backgroundColor: "white",
     borderBottomLeftRadius: 12,
@@ -77,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   cardContainerTest: {
-    height: 265,
+    height: 305,
     width: containerWidth,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
@@ -85,7 +96,7 @@ const styles = StyleSheet.create({
   badgeContainer: {
     width: containerWidth,
     height: 215,
-    backgroundColor: "#598B7F",
+    backgroundColor: "#A7C4BC",
     textAlign: "center",
     borderRadius: 12,
     position: "relative",
@@ -95,18 +106,43 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  userContainer: {
+  bottomContainer: {
     height: 50,
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    flexWrap: "wrap",
     alignItems: "center",
     marginLeft: 15,
     marginRight: 15,
   },
+  meetingContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginLeft: 2
+  },
+  userContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+  },
+  userFlexContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
   userText: {
     color: "#323332",
     fontSize: 15,
+    marginLeft: 5,
   },
   timeText: {
     color: "#323332",
@@ -124,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: containerWidth,
     height: 215,
-    backgroundColor: "#598B7F",
+    backgroundColor: "#A7C4BC",
     textAlign: "center",
     borderRadius: 12,
   },
@@ -161,25 +197,13 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   badgeTextBackground: {
-    backgroundColor: "rgba(47, 93, 98, 0.5)",
+    backgroundColor: "rgba(167, 196, 188, 0.9)",
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 5,
     paddingBottom: 5,
     borderRadius: 12,
   },
-  userImage: {
-    width: 30,
-    height: 30,
-    borderRadius: 50,
-    marginRight: 5
-  },
-  userImageContainer:{
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center"
-  }
 });
 
 export default FeedbackCard;

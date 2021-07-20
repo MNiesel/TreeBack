@@ -17,8 +17,25 @@ import uuid from 'react-native-uuid';
 
 const FreeTextScreen = ({ route, navigation }) => {
 
+  const meetingSubmitHandler = () => {
+    var feedbackUUID = uuid.v4();
+    fetch("https://treeback-80147-default-rtdb.europe-west1.firebasedatabase.app/meetingFeedbacks.json",{
+    method:"POST",
+    body: JSON.stringify({
+      badge: badge,
+      from: "Statischer Test User",
+      to: meeting.teilnehmer,
+      text: userInput,
+      id: feedbackUUID,
+      timestamp: Date.now(),
+      meetingTitle: meeting.title
+    })
+    })
 
-  const submitHandler = () => {
+  }
+
+
+  const feedbackSubmitHandler = () => {
     var feedbackUUID = uuid.v4();
     fetch("https://treeback-80147-default-rtdb.europe-west1.firebasedatabase.app/feedbacks.json",{
     method:"POST",
@@ -39,6 +56,7 @@ const FreeTextScreen = ({ route, navigation }) => {
   const { badge } = route.params;
   const { meeting } = route.params;
   const { isMeeting } = route.params;
+  const { userImage } = route.params;
 
   const image = badgeHelpers.getBadgeImage(badge);
   const badgeText = badgeHelpers.getBadgeText(badge);
@@ -46,7 +64,12 @@ const FreeTextScreen = ({ route, navigation }) => {
   const [userInput, setUserInput] = useState("");
 
   const onSendHandler = () => {
-    submitHandler();
+    if(isMeeting){
+      meetingSubmitHandler();
+    }
+    else{
+      feedbackSubmitHandler();
+    }
     setModalIsVisible(true);
   };
   const onClose = () => {
@@ -91,7 +114,7 @@ const FreeTextScreen = ({ route, navigation }) => {
         </View>
       ) : (
         <View style={styles.userContainer}>
-          <Feather name="circle" size={50} color="#323332" />
+        <Image style={styles.userImage} source={userImage} />
           <Text style={styles.userNameText}>{name}</Text>
         </View>
       )}
@@ -216,6 +239,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
+  userImage: {
+    height: 50,
+    width: 50,
+    borderRadius: 50
+  }
 });
 
 export default FreeTextScreen;

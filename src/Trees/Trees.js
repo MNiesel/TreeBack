@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
-import { Text, View , StyleSheet} from 'react-native';
-import SuccessModal from "../Modal/SuccessModal"
+import { Text, View , StyleSheet, SafeAreaView, Image} from 'react-native';
 
 const Trees = ({navigation}) => {
+  
     const [modalIsVisible, setModalIsVisible] = useState(true);
    
     return(
-        <View style={styles.container}>
-       
-        <Text>Hello from Trees</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+        <Text>
+          Tree site under construction
+        </Text>
+        </SafeAreaView>
     )
 };
 const styles = StyleSheet.create({
@@ -18,10 +19,10 @@ const styles = StyleSheet.create({
         margin: 18,
         padding: 18,
     },
-    modalView:{
-        flex:1,
-        justifyContent: "center",
-        alignItems: "center"
+    image:{
+      height: 40,
+      width: 40,
+      borderRadius: 50
     }
 })
 

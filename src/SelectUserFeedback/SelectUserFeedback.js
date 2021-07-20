@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import "intl";
@@ -17,6 +17,8 @@ const SelectUserFeedback = ({ navigation, route }) => {
   const { buttons } = route.params;
   const { meeting } = route.params;
   const { isMeeting } = route.params;
+  const {userImage} = route.params;
+
   return (
     <SafeAreaView style={styles.screenContainer}>
       {isMeeting ? (
@@ -39,7 +41,7 @@ const SelectUserFeedback = ({ navigation, route }) => {
         </View>
       ) : (
         <View style={styles.userContainer}>
-          <Feather name="circle" size={50} color="#323332" />
+        <Image style={styles.userImage} source={userImage} />
           <Text style={styles.userNameText}>{name}</Text>
         </View>
       )}
@@ -62,7 +64,8 @@ const SelectUserFeedback = ({ navigation, route }) => {
                 meeting: meeting,
                 name: name,
                 badge: selectedBadge,
-                isMeeting: isMeeting
+                isMeeting: isMeeting,
+                userImage: userImage
               });
             }}
           >
@@ -147,6 +150,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
+  userImage:{
+    height: 50,
+    width: 50,
+    borderRadius: 50
+  }
 });
 
 export default SelectUserFeedback;
