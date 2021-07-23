@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import CardFlip from "react-native-card-flip";
 import badgeHelpers from "../Badge/badgeHelpers";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const FeedbackCard = (props) => {
   const image = badgeHelpers.getBadgeImage(props.badge);
@@ -52,7 +52,7 @@ const FeedbackCard = (props) => {
       </View>
       <View style={styles.bottomContainer}>
         <View style={styles.meetingContainer}>
-          <Feather name="calendar" size={25} color={"#323332"} />
+          <Ionicons name="ios-calendar-outline" size={25} color={"#323332"} />
           <Text style={styles.userText}>{props.meetingTitle}</Text>
         </View>
         <View style={styles.userContainer}>

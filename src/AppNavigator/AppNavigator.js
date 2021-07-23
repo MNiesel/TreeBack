@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from '@react-navigation/stack';
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import Feed from "../Feed/Feed";
 import Meetings from "../Meetings/Meetings";
@@ -51,7 +51,6 @@ const TreesStack = () => {
 
 
 
-
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
@@ -63,19 +62,19 @@ export default function AppNavigator() {
             let iconName;
             let iconColor;
             if (route.name === "Feed") {
-              iconName = "home";
+              iconName = focused? "home" : "home-outline";
               iconColor = focused ? "#2F5D62" : "#323332";
             } else if (route.name === "Kollegen") {
-              iconName = "plus-circle";
+              iconName = focused? "md-people" : "md-people-outline";
               iconColor = focused ? "#2F5D62" : "#323332";
             } else if (route.name === "Termine") {
-              iconName = "calendar";
+              iconName = focused ? "ios-calendar" : "ios-calendar-outline";
               iconColor = focused ? "#2F5D62" : "#323332";
             } else if (route.name === "Trees") {
-              iconName = "award";
+              iconName = focused ? "leaf" : "leaf-outline";
               iconColor = focused ? "#2F5D62" : "#323332";
             }
-            return <Feather name={iconName} color={iconColor} size={25} />;
+            return <Ionicons name={iconName} color={iconColor} size={25} />;
           },
         })}
         tabBarOptions={{

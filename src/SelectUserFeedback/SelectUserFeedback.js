@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import "intl";
 import "intl/locale-data/jsonp/en";
@@ -27,11 +27,11 @@ const SelectUserFeedback = ({ navigation, route }) => {
             <Text style={styles.titleText}>{meeting.title}</Text>
           </View>
           <View style={styles.meetingAttendants}>
-            <Feather name="user" size={25} color="#323332" />
+            <Ionicons name="ios-person-outline" size={25} color="#323332" />
             <Text style={styles.attendantsText}>{meeting.teilnehmer.length} Teilnehmer</Text>
           </View>
           <View style={styles.timestamp}>
-          <Feather name="calendar" size={25} color="#323332" />
+          <Ionicons name="ios-calendar-outline" size={25} color="#323332" />
             <Text style={styles.timestampText}>{new Intl.DateTimeFormat("en-GB", {
               year: "numeric",
               month: "2-digit",

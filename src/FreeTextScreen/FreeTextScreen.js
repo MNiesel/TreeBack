@@ -10,7 +10,7 @@ import {
   TextInput,
   Image,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import badgeHelpers from "../Badge/badgeHelpers";
 import SuccessModal from "../Modal/SuccessModal";
 import uuid from 'react-native-uuid';
@@ -100,11 +100,11 @@ const FreeTextScreen = ({ route, navigation }) => {
             <Text style={styles.titleText}>{meeting.title}</Text>
           </View>
           <View style={styles.meetingAttendants}>
-            <Feather name="user" size={25} color="#323332" />
+            <Ionicons name="person-outline" size={25} color="#323332" />
             <Text style={styles.attendantsText}>{meeting.teilnehmer.length} Teilnehmer</Text>
           </View>
           <View style={styles.timestamp}>
-          <Feather name="calendar" size={25} color="#323332" />
+          <Ionicons name="ios-calendar-outline" size={25} color="#323332" />
             <Text style={styles.timestampText}>{new Intl.DateTimeFormat("en-GB", {
               year: "numeric",
               month: "2-digit",

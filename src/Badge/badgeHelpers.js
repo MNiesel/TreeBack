@@ -1,4 +1,23 @@
+
+
+
 const badgeHelpers = {
+  getUserImage: function (userName) {
+    let images = [
+      require("../../assets/herbert.jpg"),
+      require("../../assets/jannis.jpg"),
+      require("../../assets/john.jpg"),
+      require("../../assets/user.jpg"),
+    ]
+    let image;
+    switch(userName){
+      case "Herbert Muller": image = images[0]; break;
+      case "Jannis Schulz": image = images[1]; break;
+      case "John Holmes": image = images[2]; break;
+      case "Amanda Wattson": image = images[3]; break;
+    }
+    return image;
+  },
   getBadgeImage: function (badgeName) {
     let images = [
       require("../../assets/illustrations/calm.png"),

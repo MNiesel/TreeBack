@@ -18,6 +18,8 @@ const Feed = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
+  const loggedInUser = "Statischer Test User";
+
   async function fetchFeedbacks() {
     setIsFetching(true);
     const feedbackResponse = await fetch(
@@ -30,7 +32,7 @@ const Feed = () => {
     for (const key in feedbackData) {
       loadedFeedbacks.push({
         id: feedbackData[key].id,
-        from: feedbackData[key].from,
+        from: feedbackData[key].from === loggedInUser ? "Gesendet an " + feedbackData[key].to : feedbackData[key].from,
         to: feedbackData[key].to,
         badge: feedbackData[key].badge,
         text: feedbackData[key].text,

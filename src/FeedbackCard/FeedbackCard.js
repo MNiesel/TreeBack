@@ -13,6 +13,8 @@ import badgeHelpers from "../Badge/badgeHelpers";
 const FeedbackCard = (props) => {
   const image = badgeHelpers.getBadgeImage(props.badge);
   const badgeText = badgeHelpers.getBadgeText(props.badge);
+  const userName = props.from;
+  const userImage = badgeHelpers.getUserImage(userName);
 
   return (
     <View style={styles.cardContainer}>
@@ -49,10 +51,15 @@ const FeedbackCard = (props) => {
       </View>
       <View style={styles.userContainer}>
         <View style={styles.userImageContainer}>
-          <Image
-            source={require("../../assets/testUser.jpg")}
-            style={styles.userImage}
-          />
+          {userName.includes("Gesendet an") ? (
+            <View></View>
+          ) : (
+            <Image
+              source={userImage}
+              style={styles.userImage}
+            />
+          )}
+
           <Text style={styles.userText}>{props.from}</Text>
         </View>
         <Text style={styles.timeText}>{props.date}</Text>
@@ -172,14 +179,14 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 50,
-    marginRight: 5
+    marginRight: 5,
   },
-  userImageContainer:{
+  userImageContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
 
 export default FeedbackCard;
