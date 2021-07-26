@@ -129,7 +129,7 @@ const FreeTextScreen = ({ route, navigation }) => {
               value={userInput}
               placeholder="Füge deinem Feedback eine Nachricht hinzu..."
               multiline={true}
-              maxLength={160}
+              maxLength={150}
             ></TextInput>
           </View>
           <TouchableOpacity
@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     height: 200,
     textAlignVertical: "top",
     padding: 10,
+    flexDirection: "row"
   },
   buttonText: {
     color: "white",

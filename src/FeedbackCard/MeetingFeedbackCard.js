@@ -29,6 +29,7 @@ const FeedbackCard = (props) => {
             onPress={() => this["card" + props.index].flip()}
           >
             <ImageBackground source={image} style={styles.backgroundImage}>
+            <Text style={styles.timeText}>{props.date}</Text>
               <View style={styles.badgeTextBackground}>
                 <Text style={styles.badgeText}>{badgeText}</Text>
               </View>
@@ -60,7 +61,6 @@ const FeedbackCard = (props) => {
             <Image source={userImage} style={styles.userImage} />
             <Text style={styles.userText}>{props.from}</Text>
           </View>
-          <Text style={styles.timeText}>{props.date}</Text>
         </View>
       </View>
     </View>
@@ -145,7 +145,10 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   timeText: {
-    color: "#323332",
+    position: "absolute",
+    top: 10,
+    right: 10,
+    color: "white",
     fontSize: 15,
   },
   backgroundImage: {

@@ -32,7 +32,7 @@ const Feed = () => {
     for (const key in feedbackData) {
       loadedFeedbacks.push({
         id: feedbackData[key].id,
-        from: feedbackData[key].from === loggedInUser ? "Gesendet an " + feedbackData[key].to : feedbackData[key].from,
+        from: feedbackData[key].from,
         to: feedbackData[key].to,
         badge: feedbackData[key].badge,
         text: feedbackData[key].text,
@@ -90,6 +90,7 @@ const Feed = () => {
             from={item.from}
             badge={item.badge}
             text={item.text}
+            to={item.to}
             date={new Intl.DateTimeFormat("en-GB", {
               year: "numeric",
               month: "2-digit",
@@ -102,6 +103,7 @@ const Feed = () => {
     
   return (
     <SafeAreaView style={style.container}>
+    <StatusBar/>
       <FlatList
         data={feedbacks.sort((a, b) => {
           return new Date(b.timestamp) - new Date(a.timestamp);

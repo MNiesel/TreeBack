@@ -9,11 +9,14 @@ import {
 } from "react-native";
 import CardFlip from "react-native-card-flip";
 import badgeHelpers from "../Badge/badgeHelpers";
+import { Ionicons } from "@expo/vector-icons";
 
 const FeedbackCard = (props) => {
   const image = badgeHelpers.getBadgeImage(props.badge);
   const badgeText = badgeHelpers.getBadgeText(props.badge);
-  const userName = props.from;
+  const loggedInUser = "Statischer Test User";
+  let userName = "";
+  loggedInUser === props.from ? (userName = props.to) : (userName = props.from);
   const userImage = badgeHelpers.getUserImage(userName);
 
   return (
@@ -28,6 +31,7 @@ const FeedbackCard = (props) => {
             onPress={() => this["card" + props.index].flip()}
           >
             <ImageBackground source={image} style={styles.backgroundImage}>
+              <Text style={styles.timeText}>{props.date}</Text>
               <View style={styles.badgeTextBackground}>
                 <Text style={styles.badgeText}>{badgeText}</Text>
               </View>
@@ -51,18 +55,18 @@ const FeedbackCard = (props) => {
       </View>
       <View style={styles.userContainer}>
         <View style={styles.userImageContainer}>
-          {userName.includes("Gesendet an") ? (
-            <View></View>
-          ) : (
-            <Image
-              source={userImage}
-              style={styles.userImage}
-            />
-          )}
-
-          <Text style={styles.userText}>{props.from}</Text>
+          <Image source={userImage} style={styles.userImage} />
+          <Text style={styles.userText}>
+            {loggedInUser === props.from
+              ? "Gesendet an " + userName
+              : "Erhalten von " + userName}
+          </Text>
         </View>
-        <Text style={styles.timeText}>{props.date}</Text>
+        {loggedInUser === props.from ? (
+          <Ionicons name="paper-plane-outline" size={25} color="#323332" />
+        ) : (
+          <Ionicons name="mail-outline" size={25} color="#323332" />
+        )}
       </View>
     </View>
   );
@@ -116,7 +120,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   timeText: {
-    color: "#323332",
+    position: "absolute",
+    right: 10,
+    top: 10,
+    color: "white",
     fontSize: 15,
   },
   backgroundImage: {

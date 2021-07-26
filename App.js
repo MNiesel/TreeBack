@@ -9,9 +9,10 @@ import {
 
 import AppNavigator from "./src/AppNavigator/AppNavigator.js";
 
-
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <AppNavigator/>
+  );
 }
 
 const styles = StyleSheet.create({
