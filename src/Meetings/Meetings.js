@@ -95,7 +95,6 @@ const Meetings = ({navigation}) => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <Text>{search}</Text>
     </View>
   );
 };

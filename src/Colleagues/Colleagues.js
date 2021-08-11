@@ -73,7 +73,7 @@ const Colleagues = ({ navigation }) => {
                 }
               >
                 <Image style={styles.userImage} source={user.userImage} />
-                <Text>{user.name}</Text>
+                <Text style={styles.userName}>{user.name}</Text>
               </TouchableOpacity>
             );
           })
