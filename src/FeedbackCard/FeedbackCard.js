@@ -10,6 +10,9 @@ import {
 import CardFlip from "react-native-card-flip";
 import badgeHelpers from "../Badge/badgeHelpers";
 import { Ionicons } from "@expo/vector-icons";
+import GestureRecognizer, {
+  swipeDirections,
+} from "react-native-swipe-gestures";
 
 const FeedbackCard = (props) => {
   const image = badgeHelpers.getBadgeImage(props.badge);
@@ -26,31 +29,39 @@ const FeedbackCard = (props) => {
           style={styles.cardContainerTest}
           ref={(card) => (this["card" + props.index] = card)}
         >
-          <TouchableOpacity
-            style={styles.badgeContainer}
-            onPress={() => this["card" + props.index].flip()}
+          <GestureRecognizer
+            onSwipeLeft={() => this["card" + props.index].flip()}
           >
-            <ImageBackground source={image} style={styles.backgroundImage}>
-              <Text style={styles.timeText}>{props.date}</Text>
-              <View style={styles.badgeTextBackground}>
-                <Text style={styles.badgeText}>{badgeText}</Text>
-              </View>
+            <TouchableOpacity
+              style={styles.badgeContainer}
+              onPress={() => this["card" + props.index].flip()}
+            >
+              <ImageBackground source={image} style={styles.backgroundImage}>
+                <Text style={styles.timeText}>{props.date}</Text>
+                <View style={styles.badgeTextBackground}>
+                  <Text style={styles.badgeText}>{badgeText}</Text>
+                </View>
+                <View style={styles.pointContainer}>
+                  <View style={styles.activePoint}></View>
+                  <View style={styles.inactivePoint}></View>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+          </GestureRecognizer>
+          <GestureRecognizer
+            onSwipeRight={() => this["card" + props.index].flip()}
+          >
+            <TouchableOpacity
+              style={styles.textContainer}
+              onPress={() => this["card" + props.index].flip()}
+            >
+              <Text style={styles.commentText}>{props.text}</Text>
               <View style={styles.pointContainer}>
-                <View style={styles.activePoint}></View>
                 <View style={styles.inactivePoint}></View>
+                <View style={styles.activePoint}></View>
               </View>
-            </ImageBackground>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.textContainer}
-            onPress={() => this["card" + props.index].flip()}
-          >
-            <Text style={styles.commentText}>{props.text}</Text>
-            <View style={styles.pointContainer}>
-              <View style={styles.inactivePoint}></View>
-              <View style={styles.activePoint}></View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </GestureRecognizer>
         </CardFlip>
       </View>
       <View style={styles.userContainer}>
@@ -175,7 +186,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   badgeTextBackground: {
-    backgroundColor: "rgba(47, 93, 98, 0.5)",
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 5,

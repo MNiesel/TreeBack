@@ -10,6 +10,9 @@ import {
 import CardFlip from "react-native-card-flip";
 import badgeHelpers from "../Badge/badgeHelpers";
 import { Ionicons } from "@expo/vector-icons";
+import GestureRecognizer, {
+  swipeDirections,
+} from "react-native-swipe-gestures";
 
 const FeedbackCard = (props) => {
   const image = badgeHelpers.getBadgeImage(props.badge);
@@ -24,6 +27,9 @@ const FeedbackCard = (props) => {
           style={styles.cardContainerTest}
           ref={(card) => (this["card" + props.index] = card)}
         >
+         <GestureRecognizer
+            onSwipeLeft={() => this["card" + props.index].flip()}
+          >
           <TouchableOpacity
             style={styles.badgeContainer}
             onPress={() => this["card" + props.index].flip()}
@@ -39,6 +45,10 @@ const FeedbackCard = (props) => {
               </View>
             </ImageBackground>
           </TouchableOpacity>
+          </GestureRecognizer>
+          <GestureRecognizer
+            onSwipeRight={() => this["card" + props.index].flip()}
+          >
           <TouchableOpacity
             style={styles.textContainer}
             onPress={() => this["card" + props.index].flip()}
@@ -49,6 +59,7 @@ const FeedbackCard = (props) => {
               <View style={styles.activePoint}></View>
             </View>
           </TouchableOpacity>
+          </GestureRecognizer>
         </CardFlip>
       </View>
       <View style={styles.bottomContainer}>
