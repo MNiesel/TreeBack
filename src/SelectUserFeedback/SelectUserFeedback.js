@@ -8,6 +8,11 @@ import "intl/locale-data/jsonp/en";
 import StatusBar from "../StatusBar/StatusBar";
 
 const SelectUserFeedback = ({ navigation, route }) => {
+
+  function truncateWithEllipses(text, max) {
+    return text.substr(0, max - 1) + (text.length > max ? "..." : "");
+  }
+
   const [selectedBadge, setSelectedBadge] = useState("");
 
   const onBadgeSelect = (badge) => {
@@ -26,7 +31,7 @@ const SelectUserFeedback = ({ navigation, route }) => {
       {isMeeting ? (
         <View style={styles.meetingContainer}>
           <View>
-            <Text style={styles.titleText}>{meeting.title}</Text>
+            <Text style={styles.titleText}>{truncateWithEllipses(meeting.title, 35)}</Text>
           </View>
           <View style={styles.meetingAttendants}>
             <Ionicons name="ios-person-outline" size={25} color="#323332" />
