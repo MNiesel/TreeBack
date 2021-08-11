@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import "intl";
 import "intl/locale-data/jsonp/en";
+import StatusBar from "../StatusBar/StatusBar";
 
 const SelectUserFeedback = ({ navigation, route }) => {
   const [selectedBadge, setSelectedBadge] = useState("");
@@ -21,6 +22,7 @@ const SelectUserFeedback = ({ navigation, route }) => {
 
   return (
     <SafeAreaView style={styles.screenContainer}>
+     <StatusBar firstText={isMeeting ? "Meetings" : "Empfänger"} secondText="Badge" thirdText="Freitext" active={2}/>
       {isMeeting ? (
         <View style={styles.meetingContainer}>
           <View>
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     width: fiftyPercent,
   },
   button: {
-    marginTop: 30,
+    marginTop: 20,
     height: 50,
     backgroundColor: "#2F5D62",
     borderRadius: 12,

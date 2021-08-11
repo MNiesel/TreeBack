@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Platform, FlatList, TouchableOpacity } from "re
 import { SearchBar } from "react-native-elements";
 import "intl";
 import "intl/locale-data/jsonp/en";
+import StatusBar from "../StatusBar/StatusBar";
 
 const DUMMY_MEETINGS = [
   {
@@ -80,6 +81,7 @@ const Meetings = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar firstText="Meetings" secondText="Badge" thirdText="Freitext" active={1}/>
       <SearchBar
         platform={Platform.OS}
         placeholder="Suche einen Termin"

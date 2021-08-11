@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { Feather } from "@expo/vector-icons";
+import StatusBar from "../StatusBar/StatusBar";
 
 const DUMMY_COLLEAGUES = [
   {
@@ -48,6 +49,7 @@ const Colleagues = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.screenContainer}>
+    <StatusBar firstText="Empfänger" secondText="Badge" thirdText="Freitext" active={1}/>
       <SearchBar
         placeholder="Suche einen Kollegen"
         onChangeText={searchChangeHandler}

@@ -14,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import badgeHelpers from "../Badge/badgeHelpers";
 import SuccessModal from "../Modal/SuccessModal";
 import uuid from 'react-native-uuid';
+import StatusBar from "../StatusBar/StatusBar";
 
 const FreeTextScreen = ({ route, navigation }) => {
 
@@ -86,6 +87,7 @@ const FreeTextScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+     <StatusBar firstText={isMeeting ? "Meetings" : "Empfänger"} secondText="Badge" thirdText="Freitext" active={3}/>
       <SuccessModal
         isVisible={modalIsVisible}
         to={isMeeting? meeting.title : name}
@@ -188,7 +190,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderColor: "#323332",
     borderWidth: 1,
-    height: 200,
+    height: 150,
     textAlignVertical: "top",
     padding: 10,
     flexDirection: "row"
