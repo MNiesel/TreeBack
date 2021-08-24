@@ -6,9 +6,12 @@ import {
   SafeAreaView,
   Image,
   Linking,
+  Button
 } from "react-native";
 
+
 const Trees = ({ navigation }) => {
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>Dein Baum:</Text>

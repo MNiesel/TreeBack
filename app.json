@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "treeback",
     "name": "TreeBack",
     "slug": "TreeBack",
     "version": "1.0.0",

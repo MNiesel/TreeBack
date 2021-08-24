@@ -191,6 +191,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderRadius: 12,
+    backgroundColor: "rgba(89, 139, 127, 0.7)"
   },
   userImage: {
     width: 30,

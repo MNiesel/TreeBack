@@ -3,11 +3,9 @@ import "intl/locale-data/jsonp/en";
 import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
-  View,
-  Text,
   StyleSheet,
   FlatList,
-  ImageEditor,
+  Button
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -17,8 +15,6 @@ import MeetingFeedbackCard from "../FeedbackCard/MeetingFeedbackCard";
 const Feed = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-
-  const loggedInUser = "Statischer Test User";
 
   async function fetchFeedbacks() {
     setIsFetching(true);
