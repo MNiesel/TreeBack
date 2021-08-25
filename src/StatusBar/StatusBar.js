@@ -15,13 +15,16 @@ const StatusBar = (props) => {
         borderRadius: 50,
         borderColor: "#2F5D62",
         marginBottom: 5,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: "#F2F2F2"
 }
 
-    const secondCircleIsActive = props.active > 1 ? activeCircle : inactiveCircle;
-    let thirdCircleIsActive = props.active > 2 ? activeCircle: inactiveCircle;
+    const secondCircleIsActive = props.active > 2 ? activeCircle : inactiveCircle;
+    let thirdCircleIsActive = props.active > 3 ? activeCircle: inactiveCircle;
 
   return (<View style={styles.barContainer}>
+  <View style={props.active > 1 ? styles.barLineLeft : styles.barLineLeftActive}></View>
+  <View style={props.active > 2 ? styles.barLineRightActive : styles.barLineRight}></View>
     <View style={styles.barPart}>
         <View style={styles.circle}>
         </View>
@@ -69,7 +72,41 @@ inactiveCircle:{
 },
 circleText:{
     fontSize: 10
-}
+},
+barLineLeft: {
+    position: "absolute",
+    height: 6,
+    width: "45%",
+    top: 12,
+    left: 15,
+    backgroundColor: "#2F5D62"
+},
+barLineLeftActive: {
+    position: "absolute",
+    height: 6,
+    width: "45%",
+    top: 12,
+    left: 15,
+    borderColor: "#2F5D62",
+    borderWidth: 1
+},
+barLineRight: {
+    position: "absolute",
+    height: 6,
+    width: "45%",
+    top: 12,
+    left: 180,
+    borderColor: "#2F5D62",
+    borderWidth: 1
+},
+barLineRightActive: {
+    position: "absolute",
+    height: 6,
+    width: "45%",
+    top: 12,
+    left: 180,
+    backgroundColor: "#2F5D62",
+},
 }) 
 
 export default StatusBar;

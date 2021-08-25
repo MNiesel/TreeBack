@@ -18,6 +18,18 @@ const DUMMY_MEETINGS = [
     timestamp: "1626173727498",
     teilnehmer: ["Sandra Hantel", "Torben Struck", "Annika Lipton"],
   },
+  {
+    id: "3",
+    title: "Preperation for Something important",
+    timestamp: "1626173727498",
+    teilnehmer: ["Sandra Hantel", "Torben Struck", "Annika Lipton"],
+  },
+  {
+    id: "4",
+    title: "Material Durchsicht Präsentation",
+    timestamp: "1626173727498",
+    teilnehmer: ["Sandra Hantel", "Torben Struck", "Annika Lipton"],
+  },
 ];
 
 const buttons = [
